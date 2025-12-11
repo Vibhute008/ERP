@@ -1,6 +1,6 @@
 [build]
   command = "next build"
-  publish = ".next"
+  publish = "."
 
 # Serve static assets directly
 [[redirects]]
@@ -19,10 +19,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Netlify recommends this approach for Next.js apps
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
 
 # Explicitly serve static assets with higher priority
 [[headers]]
