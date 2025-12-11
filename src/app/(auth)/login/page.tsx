@@ -42,6 +42,31 @@ export default function LoginPage() {
     { value: 'Telecaller', label: 'Telecaller' }
   ];
 
+  // Valid credentials for each role (for development/testing)
+  const validCredentials = {
+    'Founder': {
+      email: 'founder@raulo.com',
+      password: 'founder123'
+    },
+    'Tech Lead': {
+      email: 'techlead@raulo.com',
+      password: 'techlead123'
+    },
+    'Telecaller': {
+      email: 'telecaller@raulo.com',
+      password: 'telecaller123'
+    }
+  };
+
+  const fillCredentials = (role: UserRole) => {
+    const creds = validCredentials[role];
+    if (creds) {
+      setEmail(creds.email);
+      setPassword(creds.password);
+      setRole(role);
+    }
+  };
+
   return (
     // Added ml-0 to override the main layout margin for login page
     <div className="ml-0 flex min-h-screen bg-[#F5F7FA] font-sans">
@@ -223,45 +248,65 @@ export default function LoginPage() {
 
         </form>
 
-        {/* Quick Login Buttons for Development - Removed dummy data */}
-        <div className="mt-8">
-          <p className="text-sm text-gray-500 mb-3 text-center">Quick Login (Development Only)</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('');
-                setPassword('');
-                setRole('Founder');
-              }}
-              className="px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-medium hover:bg-green-200 transition-colors"
-            >
-              Login as Founder
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('');
-                setPassword('');
-                setRole('Tech Lead');
-              }}
-              className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors"
-            >
-              Login as Tech Lead
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('');
-                setPassword('');
-                setRole('Telecaller');
-              }}
-              className="px-4 py-2 bg-purple-100 text-purple-800 rounded-lg text-sm font-medium hover:bg-purple-200 transition-colors"
-            >
-              Login as Telecaller
-            </button>
+        {/* Valid Credentials Display for Development */}
+        {isDevelopment && (
+          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-800 mb-3 font-medium">Valid Credentials (Development Only):</p>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-blue-700">Founder:</span>
+                <div className="flex space-x-2">
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">founder@raulo.com</span>
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">founder123</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-blue-700">Tech Lead:</span>
+                <div className="flex space-x-2">
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">techlead@raulo.com</span>
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">techlead123</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-blue-700">Telecaller:</span>
+                <div className="flex space-x-2">
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">telecaller@raulo.com</span>
+                  <span className="text-xs bg-blue-100 px-2 py-1 rounded">telecaller123</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Quick Login Buttons for Development */}
+        {isDevelopment && (
+          <div className="mt-4">
+            <p className="text-sm text-gray-500 mb-3 text-center">Quick Login (Development Only)</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <button
+                type="button"
+                onClick={() => fillCredentials('Founder')}
+                className="px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-medium hover:bg-green-200 transition-colors"
+              >
+                Fill Founder Creds
+              </button>
+              <button
+                type="button"
+                onClick={() => fillCredentials('Tech Lead')}
+                className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors"
+              >
+                Fill Tech Lead Creds
+              </button>
+              <button
+                type="button"
+                onClick={() => fillCredentials('Telecaller')}
+                className="px-4 py-2 bg-purple-100 text-purple-800 rounded-lg text-sm font-medium hover:bg-purple-200 transition-colors"
+              >
+                Fill Telecaller Creds
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Footer */}
         <div className="mt-[32px]">

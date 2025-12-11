@@ -19,6 +19,22 @@ interface AuthContextType {
   logout: () => void;
 }
 
+// Predefined valid credentials for each role
+const VALID_CREDENTIALS = {
+  'Founder': {
+    email: 'founder@raulo.com',
+    password: 'founder123'
+  },
+  'Tech Lead': {
+    email: 'techlead@raulo.com',
+    password: 'techlead123'
+  },
+  'Telecaller': {
+    email: 'telecaller@raulo.com',
+    password: 'telecaller123'
+  }
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -40,9 +56,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback((email: string, password: string, role: UserRole): boolean => {
-    // For development: accept any non-empty credentials
-    // In production, this would connect to a real authentication system
-    if (email && password) {
+    // Validate credentials against predefined valid credentials
+    const validCredentials = VALID_CREDENTIALS[role];
+    
+    if (validCredentials && 
+        email === validCredentials.email && 
+        password === validCredentials.password) {
       const userObj: User = {
         email: email,
         role: role as UserRole
