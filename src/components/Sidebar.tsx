@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -164,10 +165,12 @@ const Sidebar = () => {
         {/* Logo Icon and Brand Name side by side */}
         <div className="flex items-center gap-[12px]">
           <div className="w-11 h-11 rounded-full flex items-center justify-center bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.10)]">
-            <img 
+            <Image 
               src="/assets/logo.png" 
               alt="Raulo Enterprises Logo" 
-              className="w-8 h-8 object-contain"
+              width={32}
+              height={32}
+              className="object-contain"
             />
           </div>
           <h1 className="text-[20px] font-bold text-[#1E293B]">Raulo Ent.</h1>

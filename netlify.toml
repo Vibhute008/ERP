@@ -1,3 +1,16 @@
+# Redirects for static assets - let them be served directly
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# Redirects for Next.js static files
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
+  status = 200
+
+# Fallback all other routes to index.html for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
