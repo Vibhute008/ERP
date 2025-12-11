@@ -11,7 +11,7 @@ export default function ImageTestPage() {
       <div className="mt-8">
         <h2>Next.js Image Component:</h2>
         <Image 
-          src="public/assets/logo.png" 
+          src="/assets/logo.png" 
           alt="Logo Test" 
           width={100} 
           height={100}
@@ -21,7 +21,7 @@ export default function ImageTestPage() {
       <div className="mt-8">
         <h2>Regular img tag:</h2>
         <img 
-          src="public/assets/logo.png" 
+          src="/assets/logo.png" 
           alt="Logo Test" 
           width={100} 
           height={100}

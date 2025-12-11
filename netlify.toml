@@ -1,6 +1,24 @@
 [build]
   command = "next build"
-  publish = "."
+  publish = ".next"
+
+# Serve static assets directly
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# Handle Next.js static files
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
+  status = 200
+
+# Fallback for SPA routing (should be last)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 # Netlify recommends this approach for Next.js apps
 [[plugins]]
@@ -16,23 +34,3 @@
   for = "/_next/static/*"
   [headers.values]
     cache-control = "public, max-age=31536000, immutable"
-
-# Handle static assets - let them be served directly
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-  force = true
-
-# Handle Next.js static files
-[[redirects]]
-  from = "/_next/static/*"
-  to = "/_next/static/:splat"
-  status = 200
-  force = true
-
-# Fallback all other routes to index.html for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

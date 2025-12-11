@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^5.15.1",
     "date-fns": "^4.1.0",
     "next": "16.0.8",
     "react": "18.2.0",

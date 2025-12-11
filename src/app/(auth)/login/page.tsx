@@ -77,7 +77,7 @@ export default function LoginPage() {
         {/* Using the logo.png from public/assets */}
         <div className="mb-6">
           <Image 
-            src=".public/assets/logo.png" 
+            src="/assets/logo.png" 
             alt="Raulo Ent. Logo" 
             width={48} 
             height={48}
