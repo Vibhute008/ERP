@@ -12,7 +12,8 @@ const nextConfig: NextConfig = {
   // Enable image optimization
   images: {
     minimumCacheTTL: 60,
-    // Since we're using local images, we don't need to configure remote domains
+    // Configure domains if we ever use remote images
+    domains: [],
   },
   // Enable Turbopack optimizations
   turbopack: {},

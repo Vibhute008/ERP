@@ -1,14 +1,35 @@
-# Redirects for static assets - let them be served directly
+[build]
+  command = "next build"
+  publish = "."
+
+# Netlify recommends this approach for Next.js apps
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Explicitly serve static assets with higher priority
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+# Handle static assets - let them be served directly
 [[redirects]]
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
+  force = true
 
-# Redirects for Next.js static files
+# Handle Next.js static files
 [[redirects]]
   from = "/_next/static/*"
   to = "/_next/static/:splat"
   status = 200
+  force = true
 
 # Fallback all other routes to index.html for client-side routing
 [[redirects]]
