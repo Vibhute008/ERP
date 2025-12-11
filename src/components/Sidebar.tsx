@@ -166,7 +166,7 @@ const Sidebar = () => {
         <div className="flex items-center gap-[12px]">
           <div className="w-11 h-11 rounded-full flex items-center justify-center bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.10)]">
             <Image 
-              src="/assets/logo.png" 
+              src="public/assets/logo.png" 
               alt="Raulo Enterprises Logo" 
               width={32}
               height={32}
